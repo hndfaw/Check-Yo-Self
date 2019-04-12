@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Check Yo'Self</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <h1 class="header__title">Check Yo'Self</h1>
+      <form class="header__form">
+        <button class="header__form__search-btn">SS</button>
+        <input type="text" placeholder="Search" class="header__form__search-input">
+      </form>
+    </header>
+    <main>
+    <aside class="sidebar">
+      <form class="sidebar__form">
+        <label class="sidebar__form__todo-title-label">ToDo Title</label>
+        <input type="text" class="sidebar__form__todo-title-input">
+        <label class="sidebar__form__todo-item-label">ToDo Item</label>
+        <input type="text" class="sidebar__form__todo-item-input">
+        <button class="sidebar__form__make-task-btn">Make Task List</button>
+        <button class="sidebar__form__clear-all-btn">Clear All</button>
+      </form>
+      <button class="sidebar__form__urgency-fulter-btn">Filter by Urgency</button>
+    </aside>
+    <section class="task-hub">
+        <div class="task-hub__task-card">
+          <h3 class="task-hub__task-card__title">Task Title!</h3>
+          <input type="checkbox" class="task-hub__task-card__checkbox-input">
+        </div>
+      </section>
+    </main>
+    <script type="text/javascript" src="todo-list.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
