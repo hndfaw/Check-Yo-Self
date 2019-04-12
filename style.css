@@ -9,14 +9,14 @@
 }
 
 .global-input {
-    outline: none;
-    border: black 1px solid;
-    border-radius: 3px;
-    height: 40px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-	font-size: 16px;
+  outline: none;
+  border: black 1px solid;
+  border-radius: 3px;
+  height: 40px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
 	padding-left: 5px;
 }
 
@@ -56,6 +56,29 @@ header {
 
 .header__title {
     font-weight: 800;
+}
+
+.header__form {
+  width: 250px;
+  display: flex;
+}
+
+.header__form__search-input {
+  width: 200px;
+  margin-right: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: 0px;
+}
+
+.header__form__search-btn {
+  background-color: gray;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid black;
 }
 
 /*----------Main----------*/
@@ -104,4 +127,27 @@ main {
     margin-top: 25px;
 }
 
+.sidebar__form__todo-item-input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 85%;
+    border-right: 0px;
+}
+
+.sidebar__form__todo-item-container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: relative;
+}
+
+.sidebar__form__todo-item-btn {
+    background-color: gray;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border: 1px solid black;
+}
 

@@ -10,8 +10,8 @@
     <header>
       <h1 class="header__title">Check Yo'Self</h1>
       <form class="header__form">
-        <button class="header__form__search-btn">SS</button>
-        <input type="text" placeholder="Search" class="header__form__search-input">
+        <img class="header__form__search-btn">
+        <input type="text" placeholder="Search" class="header__form__search-input global-input">
       </form>
     </header>
     <main>
@@ -20,7 +20,12 @@
         <label class="sidebar__form__todo-title-label">ToDo Title</label>
         <input type="text" class="sidebar__form__todo-title-input global-input">
         <label class="sidebar__form__todo-item-label">ToDo Item</label>
-        <input type="text" class="sidebar__form__todo-item-input global-input">
+
+        <div class="sidebar__form__todo-item-container">
+          <input type="text" class="sidebar__form__todo-item-input global-input">
+          <img class="sidebar__form__todo-item-btn">
+        </div>
+        
         <button class="sidebar__form__make-task-btn global-btn">Make Task List</button>
         <button class="sidebar__form__clear-all-btn global-btn">Clear All</button>
       </form>
