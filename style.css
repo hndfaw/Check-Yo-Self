@@ -96,6 +96,14 @@ main {
 
 /*----------Tasks----------*/
 
+.task-hub {
+  display: grid;
+  /* grid-template-columns: auto auto; */
+	flex-wrap: wrap;
+	overflow: scroll;
+  justify-content: flex-start;
+}
+
 .task-hub__task-card__title,
 .task-hub__task-card__items {
     font-weight: 400;
@@ -106,13 +114,12 @@ main {
     padding: 8px;
 }
 
-.task-hub {
-  margin: 20px;
-}
+
 
 .task-hub__task-card {
   width: 210px;
   border: black 1px solid;
+  margin: 20px;
 }
 
 .task-hub__task-card__footer {
