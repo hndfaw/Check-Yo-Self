@@ -97,8 +97,7 @@ main {
 /*----------Tasks----------*/
 
 .task-hub {
-  display: grid;
-  /* grid-template-columns: auto auto; */
+  display: flex;
 	flex-wrap: wrap;
 	overflow: scroll;
   justify-content: flex-start;
