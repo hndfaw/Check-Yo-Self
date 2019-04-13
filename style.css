@@ -114,13 +114,17 @@ main {
 .task-hub__task-card__title,
 .task-hub__task-card__items {
     font-weight: 400;
-    border-bottom: 1px solid #c7d3d8;
+    border-bottom: 2px solid #c7d3d8;
     width: 96%;
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
     color: #1f1f3d;
     font-size: 16px;
+}
+
+.task-hub__task-card__items {
+  display: flex;
 }
 
 .task-hub__task-card {
@@ -130,13 +134,13 @@ main {
   margin-bottom:  0.5rem;
   width:  100%; 
   background-color: #fafdff;
-  border: 1px solid #c7d3d8;
+  border: 2px solid #c7d3d8;
 }
 
 .task-hub__task-card__footer {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 7px;
 }
 
 .task-hub__task-card__footer__urgency-btn,
@@ -145,6 +149,35 @@ main {
   width: 20px;
 }
 
+.task-hub__task-card__footer__text {
+  font-size: 10px;
+  color: #3c6577;
+}
+
+.task-hub__task-card__footer__container:hover
+.task-hub__task-card__footer__text {
+  font-size: 10px;
+  color: black;
+}
+
+.task-hub__task-card__footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  cursor: pointer;
+}
+
+.task-hub__task-card__items-text {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.task-hub__task-card__items-checkbox-input {
+  margin-top: 4px;
+  margin-right: 5px;
+}
 
 /*----------Sidebar----------*/
 
@@ -224,11 +257,20 @@ main {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
+  color: #fff;
 }
 
-.item-close-btn {
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  background-color: green;
+.item-delete-btn {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  margin-right: 5px;
 }
+
+.item-js {
+  display: flex;
+  align-items: center;
+  display: flex;
+  align-items: flex-start;
+}
+

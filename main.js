@@ -5,7 +5,11 @@ var sidebarListItems = document.querySelector('.sidebar__form-list-items');
 
 sidebarTodoItemBtn.addEventListener('click', function() {
     sidebarListItems.innerHTML += `
-       <p class=""><span> <img class="item-close-btn"></span> ${sidebarTodoItemInput.value}</p>
+       <p class="item-js">
+            <span>
+                <img class="item-delete-btn" src="images/delete.svg">
+            </span> ${sidebarTodoItemInput.value}
+        </p>
     `
     sidebarTodoItemInput.value = "";    
 });
