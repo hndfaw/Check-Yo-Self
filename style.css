@@ -5,7 +5,6 @@
     margin: 0px;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
-    border: red 0px solid;
 }
 
 .global-input {
@@ -17,17 +16,17 @@
   margin-left: auto;
   margin-right: auto;
   font-size: 16px;
-	padding-left: 5px;
+  padding-left: 9px;
 }
 
 label {
     margin-top: 25px;
     margin-left: 5px; 
     font-size: 13px;
-    font-weight: bold;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    color: #fff;
 }
 
 .global-btn {
@@ -40,8 +39,9 @@ label {
     border-radius: 3px;
     border: black 1px solid;
     font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
+    background-color: #1f1f3d;
+    color: #fff;
 }
 
 /*----------Header----------*/
@@ -53,6 +53,9 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #1f1f3d;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .header__title {
@@ -66,12 +69,12 @@ header {
 }
 
 .header__form {
-  width: 250px;
+  width: 300px;
   display: flex;
 }
 
 .header__form__search-input {
-  width: 200px;
+  width: 250px;
   margin-right: 10px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -80,14 +83,16 @@ header {
 }
 
 .header__form__search-btn {
-  background-color: gray;
+    background-color: lightgray;
     width: 40px;
     height: 40px;
     position: absolute;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    border: 1px solid black;
+    border: 1px solid #1f1f3d;
+    border-right: 0;
     cursor: pointer;
+    padding: 5px;
 }
 
 /*----------Main----------*/
@@ -97,6 +102,7 @@ main {
     grid-template-columns: 300px auto;
     width: 100%;
     height: 94vh;
+    margin-top: 60px;
 }
 
 /*----------Tasks----------*/
@@ -108,23 +114,23 @@ main {
 .task-hub__task-card__title,
 .task-hub__task-card__items {
     font-weight: 400;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #c7d3d8;
     width: 96%;
     margin-left: auto;
     margin-right: auto;
-    padding: 8px;
-    
+    padding: 5px;
+    color: #1f1f3d;
+    font-size: 16px;
 }
 
 .task-hub__task-card {
   display: inline-block;
   margin-left:  1rem;
-  margin-right:  1rem;
   margin-top:  0.5rem;
   margin-bottom:  0.5rem;
-  padding:  1rem;
   width:  100%; 
-  background:  #efefef;
+  background-color: #fafdff;
+  border: 1px solid #c7d3d8;
 }
 
 .task-hub__task-card__footer {
@@ -147,6 +153,7 @@ main {
     flex-direction: column;
     align-items: space-around;
     border-right: 1px solid black;
+    background-color: #587a8a;
 }
 
 .sidebar__form {
@@ -183,7 +190,7 @@ main {
 }
 
 .sidebar__form__todo-item-btn {
-    background-color: gray;
+    background-color: #1f1f3d;
     width: 40px;
     height: 40px;
     position: absolute;
@@ -191,10 +198,28 @@ main {
     border-bottom-right-radius: 3px;
     border: 1px solid black;
     cursor: pointer;
+    display: inline-block;
+}
+
+.sidebar__form__todo-item-btn-plus-one,
+.sidebar__form__todo-item-btn-plus-two {
+  width: 25px;
+  height: 1px;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar__form__todo-item-btn-plus-one {
+  margin-top: 50%;
+}
+.sidebar__form__todo-item-btn-plus-two {
+  display: absolute;
+  transform: rotate(90deg);
+  margin-top: -1px;
 }
 
 .sidebar__form-list-items {
-  border: red 1px solid;
   width: 90%;
   margin-left: auto;
   margin-right: auto;

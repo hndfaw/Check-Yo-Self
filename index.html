@@ -10,22 +10,25 @@
     <header>
       <h1 class="header__title">CHECK <span class="header__title-yo">YO'</span>SELF</h1>
       <form class="header__form">
-        <img class="header__form__search-btn">
+        <img class="header__form__search-btn" src="images/search.svg">
         <input type="text" placeholder="Search" class="header__form__search-input global-input">
       </form>
     </header>
     <main>
     <aside class="sidebar">
       <form class="sidebar__form">
-        <label class="sidebar__form__todo-title-label">ToDo Title</label>
+        <label class="sidebar__form__todo-title-label">Task Title</label>
         <input type="text" class="sidebar__form__todo-title-input global-input" >
 
         <ul class="sidebar__form-list-items"></ul>
-        <label class="sidebar__form__todo-item-label">ToDo Item</label>
+        <label class="sidebar__form__todo-item-label">Task Item</label>
 
         <div class="sidebar__form__todo-item-container">
           <input type="text" class="sidebar__form__todo-item-input global-input">
-          <img class="sidebar__form__todo-item-btn">
+          <div class="sidebar__form__todo-item-btn" >
+            <p class="sidebar__form__todo-item-btn-plus-one"></p>
+            <p class="sidebar__form__todo-item-btn-plus-two"></p>
+          </div>
         </div>
         
         <button class="sidebar__form__make-task-btn global-btn">Make Task List</button>
