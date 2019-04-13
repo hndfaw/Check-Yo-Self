@@ -42,6 +42,7 @@ label {
     cursor: pointer;
     background-color: #1f1f3d;
     color: #fff;
+    outline: none;
 }
 
 /*----------Header----------*/
@@ -111,8 +112,8 @@ main {
   column-width: 13em; 
 }
 
-.task-hub__task-card__title,
-.task-hub__task-card__items {
+.task-card__title,
+.task-card__items {
     font-weight: 400;
     border-bottom: 2px solid #c7d3d8;
     width: 96%;
@@ -123,11 +124,7 @@ main {
     font-size: 16px;
 }
 
-.task-hub__task-card__items {
-  display: flex;
-}
-
-.task-hub__task-card {
+.task-card {
   display: inline-block;
   margin-left:  1rem;
   margin-top:  0.5rem;
@@ -137,46 +134,36 @@ main {
   border: 2px solid #c7d3d8;
 }
 
-.task-hub__task-card__footer {
+.task-card__footer {
   display: flex;
   justify-content: space-between;
   padding: 7px;
 }
 
-.task-hub__task-card__footer__urgency-btn,
-.task-hub__task-card__footer__close-btn {
+.task-card__footer__urgency-btn,
+.task-card__footer__close-btn {
   height: 20px;
   width: 20px;
 }
 
-.task-hub__task-card__footer__text {
+.task-card__footer__text {
   font-size: 10px;
   color: #3c6577;
 }
 
-.task-hub__task-card__footer__container:hover
-.task-hub__task-card__footer__text {
+.task-card__footer__container:hover
+.task-card__footer__text {
   font-size: 10px;
   color: black;
 }
 
-.task-hub__task-card__footer__container {
+.task-card__footer__container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 40px;
   cursor: pointer;
-}
-
-.task-hub__task-card__items-text {
-  display: inline-block;
-  font-size: 14px;
-}
-
-.task-hub__task-card__items-checkbox-input {
-  margin-top: 4px;
-  margin-right: 5px;
 }
 
 /*----------Sidebar----------*/
@@ -267,7 +254,7 @@ main {
   margin-right: 5px;
 }
 
-.item-js {
+.item-template-literals {
   display: flex;
   align-items: center;
   display: flex;
