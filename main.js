@@ -46,31 +46,30 @@ function pushItemsToArray() {
 
 function addTaskToDOM(newTask) {
 
-    taskHub.innerHTML += `
-    <article class="task-card" data-id="${newTask.id}">
-      <h3 class="task-card__title">${newTask.title}</h3>
-      <div class="task-card__items">
-        ${newTask.tasks.map((item) => `
-        <div class="item-container">
-          <img src="images/checkbox.svg" class="item-checkbox" data-id="${item.id}">
-          <p class="${item.completed} item-checkbox-text" data-id="${item.id}" >${item.item}</p>
-        </div>
-        `
-        ).join('')}
-
+  taskHub.innerHTML += `
+  <article class="task-card task-card-${newTask.urgent}" data-id="${newTask.id}">
+    <h3 class="task-card__title task-card-title-item-${newTask.urgent}">${newTask.title}</h3>
+    <div class="task-card__items task-card-title-item-${newTask.urgent}">
+      ${newTask.tasks.map((item) => `
+      <div class="item-container">
+        <img src="images/checkbox.svg" class="item-checkbox" data-id="${item.id}">
+        <p class="text-${item.completed} item-checkbox-text" data-id="${item.id}" >${item.item}</p>
       </div>
-      <div class="task-card__footer">
-        <div class="task-card__footer__container task-card-urgent-container">
-          <img class="task-card__footer__urgency-btn" src="${newTask.urgentImg}">
-          <p class="task-card__footer__text">URGENT</p>
-        </div>
-        <div class="task-card__footer__container task-card-delete-container">
-          <img class="task-card__footer__close-btn" src="images/delete.svg">
-          <p class="task-card__footer__text">DELETE</p>
-        </div>
+      `
+      ).join('')}
+    </div>
+    <div class="task-card__footer">
+      <div class="task-card__footer__container task-card-urgent-container">
+        <img class="task-card__footer__urgency-btn" src="${newTask.urgentImg}">
+        <p class="task-card__footer__text task-card__footer__text-${newTask.urgent}">URGENT</p>
       </div>
-    </article>
-    `
+      <div class="task-card__footer__container task-card-delete-container">
+        <img class="task-card__footer__close-btn" src="images/delete.svg">
+        <p class="task-card__footer__text">DELETE</p>
+      </div>
+    </div>
+  </article>
+  `
     itemsArray = [];
 }
 
