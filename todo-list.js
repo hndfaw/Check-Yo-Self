@@ -49,9 +49,6 @@ class Task {
     this.updateStorage(items)
   }
 
-   // updateTask() {
-
-  // }
 }
 
 class Item {
@@ -62,7 +59,4 @@ class Item {
     this.completedImg = completedImg || "images/checkbox.svg";
   }
 
-  myMethod() {
-    console.log(ok)
-  }
 }

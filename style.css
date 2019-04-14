@@ -291,3 +291,6 @@ main {
   cursor: pointer;
 }
 
+button[data-value="true"] {
+background-color: #ef4a23;
+}

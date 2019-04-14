@@ -7,6 +7,7 @@ var taskTitleInput = document.querySelector('.sidebar__form__todo-title-input');
 var itemMakerBtn = document.querySelector('.sidebar__form__todo-item-btn');
 var taskMakerBtn = document.querySelector('.sidebar__form__make-task-btn');
 var clearAllbtn = document.querySelector('.sidebar__form__clear-all-btn');
+var urgencyFilterBtn = document.querySelector('.sidebar__form__urgency-fulter-btn');
               //----Sections----
 var taskHub = document.querySelector('.task-hub');
 var sidebar = document.querySelector('.sidebar');
@@ -28,6 +29,7 @@ if (tasksArray.length != 0) {
 itemMakerBtn.addEventListener('click', verifyItems);
 taskMakerBtn.addEventListener('click', verifyTaskTitle);
 clearAllbtn.addEventListener('click', clearFields);
+urgencyFilterBtn.addEventListener('click', urgencyFilterValue);
 
 // ----------Event Bubbling------------
 
@@ -151,7 +153,6 @@ function updateDOM(array) {
 
 // ------- Remove tasks from  -------
 
-
 function removeTask(parentId) {
 	var newArray = tasksArray.map(item => {
     (item.id == parseInt(parentId)) ? item.deleteFromStorage(): null;
@@ -166,6 +167,7 @@ function itemsCompleted(parentId, childElementId) {
     (item.id == parseInt(parentId)) ? item.updateItem(parentId, childElementId): null;
     return item
   })
+  tasksArray = newArray;
   updatePage(newArray)
 }
 
@@ -182,7 +184,27 @@ function urgentBtn(parentId, element) {
 // ------ Update Page -------
 
 function updatePage(updatedTasksArray) {
-  tasksArray = updatedTasksArray;
   taskHub.innerHTML = ""
-  updateDOM(tasksArray);
+  updateDOM(updatedTasksArray);
+}
+
+// ----- urgency filter ------
+
+function urgencyFilterValue() {
+  var dataValue = urgencyFilterBtn.dataset;
+  if (dataValue.value == "false") {
+    dataValue.value = "true";
+    urgencyFilter()
+  } else {
+    dataValue.value = "false";
+    updatePage(tasksArray)
+  }
+}
+
+function urgencyFilter() {  
+  var filteredArray = [];
+  tasksArray.map(function(item) {
+    (item.urgent === true) ? filteredArray.push(item) : null;   
+  })
+  updatePage(filteredArray)
 }
