@@ -62,7 +62,7 @@ function addTaskToDOM(newTask) {
       </div>
       <div class="task-card__footer">
         <div class="task-card__footer__container task-card-urgent-container">
-          <img class="task-card__footer__urgency-btn" src="images/urgent.svg">
+          <img class="task-card__footer__urgency-btn" src="${newTask.urgentImg}">
           <p class="task-card__footer__text">URGENT</p>
         </div>
         <div class="task-card__footer__container task-card-delete-container">
@@ -116,6 +116,7 @@ function removeFromArray(parentEl) {
 }
 
 if (tasksArray.length != 0) {
+  
   reInstantiatingTasks()
 }
  
@@ -123,16 +124,15 @@ function reInstantiatingTasks() {
   var myArray = JSON.parse(localStorage.getItem('tasks'))
 
 	var newTasksArray = myArray.map(task => {
-		task = new Task(task.id, task.title, task.tasks, task.urgent)
+		task = new Task(task.id, task.title, task.tasks, task.urgent, task.urgentImg)
     return task;
 	}) 
   tasksArray = newTasksArray;
-  
   updateDOM(newTasksArray)
 }
 
-function updateDOM(newTasksArray) {
-  newTasksArray.forEach(item => {
+function updateDOM(array) {
+  array.forEach(item => {
     addTaskToDOM(item)
   });
 }
@@ -143,6 +143,7 @@ taskHub.addEventListener("click", function(e) {
   var parentId = e.target.parentNode.parentNode.parentNode.dataset.id;
   e.target.className.includes('task-card__footer__close-btn') ? removeTask(parentId) : null;
   e.target.className.includes('item-checkbox') ? itemsCompleted(parentId, e.target) : null;
+  e.target.className.includes('task-card__footer__urgency-btn') ? urgentBtn(parentId, e.target) : null;
 });
 
 function removeTask(parentId) {
@@ -162,6 +163,17 @@ function itemsCompleted(parentId, childElementId) {
   updatePage(newArray)
 }
 
+function urgentBtn(parentId, element) {
+    var newArray = tasksArray.map(item => {
+      (item.id == parseInt(parentId)) ? item.updateUrgency(element) : null;
+      return item
+    })
+
+    taskHub.innerHTML = "";
+    reInstantiatingTasks()
+    updatePage(newArray)
+
+  }
 
 // ------ Update Page -------
 

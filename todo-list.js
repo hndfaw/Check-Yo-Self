@@ -1,9 +1,10 @@
 class Task {
-  constructor(id, title, tasks, urgent) {
+  constructor(id, title, tasks, urgent, urgentImg) {
     this.id = id;
     this.title = title;
     this.tasks = tasks || [];
-    this.urgent = false;
+    this.urgent = urgent || false;
+    this.urgentImg = urgentImg || "images/urgent.svg";
   }
 
   saveToStorage(tasksArray) {
@@ -27,16 +28,27 @@ class Task {
     var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
     this.tasks.map(item => {
         (item.id == parseInt(childElementId.dataset.id)) ? item.completed = !item.completed : null;
-        (item.id == parseInt(childElementId.dataset.id)) ? console.log(item) : null;
       })
     localStorageItems.splice(tasksArray.indexOf(this),1, this);
     localStorage.removeItem('tasks');
     localStorage.setItem('tasks', JSON.stringify(localStorageItems))
   }
 
-  // updateUrgency() {
-  //  this.urgent = !this.urgent;
-  // }
+  updateUrgency() {
+    var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
+    this.urgent = !this.urgent;
+    
+
+    if (this.urgent === false) {
+      this.urgentImg = "images/urgent.svg"
+    } else {
+      this.urgentImg = "images/urgent-active.svg"
+    }
+    localStorageItems.splice(tasksArray.indexOf(this),1, this);
+    localStorage.removeItem('tasks');
+    localStorage.setItem('tasks', JSON.stringify(localStorageItems))
+  }
+
 }
 
 class Item {
