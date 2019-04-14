@@ -151,8 +151,6 @@ main {
   color: #3c6577;
 }
 
-
-
 .task-card__footer__container {
   display: flex;
   flex-direction: column;
@@ -160,6 +158,11 @@ main {
   justify-content: space-between;
   height: 40px;
   cursor: pointer;
+}
+
+.true {
+  color: #828282;
+  font-style: italic;
 }
 
 /*----------Sidebar----------*/
@@ -259,10 +262,18 @@ main {
 
 .item-container {
   display: flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .item-checkbox {
-  margin-top: 7px;
+  margin-top: 5px;
   margin-right: 5px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.item-checkbox-text {
+  cursor: pointer;
 }
 

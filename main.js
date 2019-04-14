@@ -6,7 +6,7 @@ var taskHub = document.querySelector('.task-hub');
 var taskTitleInput = document.querySelector('.sidebar__form__todo-title-input');
 var taskCardItems = document.querySelector('.task-card__items');
 var sidebar = document.querySelector('.sidebar');
-var itemCheckbox = document.querySelector('.item-checkbox');
+// var itemCheckbox = document.querySelector('.item-checkbox');
 var taskCard = document.getElementsByClassName('task-card');
 var tasksArray = JSON.parse(localStorage.getItem('tasks')) || [];
 var itemsArray = [];
@@ -53,8 +53,8 @@ function addTaskToDOM(newTask) {
       <div class="task-card__items">
         ${newTask.tasks.map((item) => `
         <div class="item-container">
-          <input type="checkbox" class="item-checkbox" data-completed="${item.completed}" data-id="${item.id}"  >
-          <p>${item.item}</p>
+          <img src="images/checkbox.svg" class="item-checkbox" data-id="${item.id}">
+          <p class="${item.completed} item-checkbox-text" data-id="${item.id}" >${item.item}</p>
         </div>
         `
         ).join('')}
@@ -157,5 +157,16 @@ function removeTask(parentId) {
 function itemsCompleted(parentId, childElementId) {
 	var newArray = tasksArray.map(item => {
     (item.id == parseInt(parentId)) ? item.updateItem(parentId, childElementId): null;
+    return item
   })
+  updatePage(newArray)
+}
+
+
+// ------ Update Page -------
+
+function updatePage(updatedTasksArray) {
+  tasksArray = updatedTasksArray;
+  taskHub.innerHTML = ""
+  updateDOM(tasksArray);
 }
