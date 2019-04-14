@@ -6,7 +6,6 @@ var taskHub = document.querySelector('.task-hub');
 var taskTitleInput = document.querySelector('.sidebar__form__todo-title-input');
 var taskCardItems = document.querySelector('.task-card__items');
 var sidebar = document.querySelector('.sidebar');
-// var itemCheckbox = document.querySelector('.item-checkbox');
 var taskCard = document.getElementsByClassName('task-card');
 var tasksArray = JSON.parse(localStorage.getItem('tasks')) || [];
 var itemsArray = [];
@@ -116,12 +115,11 @@ function removeFromArray(parentEl) {
 }
 
 if (tasksArray.length != 0) {
-  
   reInstantiatingTasks()
 }
  
 function reInstantiatingTasks() {
-  var myArray = JSON.parse(localStorage.getItem('tasks'))
+  var myArray =  JSON.parse(localStorage.getItem('tasks'))
 
 	var newTasksArray = myArray.map(task => {
 		task = new Task(task.id, task.title, task.tasks, task.urgent, task.urgentImg)
@@ -171,8 +169,6 @@ function urgentBtn(parentId, element) {
 
     taskHub.innerHTML = "";
     reInstantiatingTasks()
-    updatePage(newArray)
-
   }
 
 // ------ Update Page -------

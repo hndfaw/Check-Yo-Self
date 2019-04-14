@@ -12,43 +12,37 @@ class Task {
     localStorage.setItem('tasks', strTasksArray);
   }
 
-  deleteFromStorage() {
-    var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
-    localStorageItems.splice(tasksArray.indexOf(this),1);
+  updateStorage(array) {
     localStorage.removeItem('tasks');
-    localStorage.setItem('tasks', JSON.stringify(localStorageItems))
+    this.saveToStorage(array)
   }
 
-
-  // updateTask() {
-
-  // }
+  deleteFromStorage() {
+    var items = JSON.parse(localStorage.getItem('tasks'))
+    items.splice(tasksArray.indexOf(this),1);
+    this.updateStorage(items)
+  }
 
   updateItem(parentId, childElementId) {
-    var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
+    var items = JSON.parse(localStorage.getItem('tasks'))
     this.tasks.map(item => {
         (item.id == parseInt(childElementId.dataset.id)) ? item.completed = !item.completed : null;
       })
-    localStorageItems.splice(tasksArray.indexOf(this),1, this);
-    localStorage.removeItem('tasks');
-    localStorage.setItem('tasks', JSON.stringify(localStorageItems))
+    items.splice(tasksArray.indexOf(this),1, this);
+    this.updateStorage(items)
   }
 
   updateUrgency() {
-    var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
+    var items = JSON.parse(localStorage.getItem('tasks'))
     this.urgent = !this.urgent;
-    
-
-    if (this.urgent === false) {
-      this.urgentImg = "images/urgent.svg"
-    } else {
-      this.urgentImg = "images/urgent-active.svg"
-    }
-    localStorageItems.splice(tasksArray.indexOf(this),1, this);
-    localStorage.removeItem('tasks');
-    localStorage.setItem('tasks', JSON.stringify(localStorageItems))
+    (this.urgent === false) ? this.urgentImg = "images/urgent.svg" : this.urgentImg = "images/urgent-active.svg";
+    items.splice(tasksArray.indexOf(this),1, this);
+    this.updateStorage(items)
   }
 
+   // updateTask() {
+
+  // }
 }
 
 class Item {
