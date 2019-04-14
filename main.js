@@ -41,7 +41,7 @@ sidebar.addEventListener("click", function(e) {
 
 taskHub.addEventListener("click", function(e) {
   var parentId = e.target.parentNode.parentNode.parentNode.dataset.id;
-  e.target.className.includes('task-card__footer__close-btn') ? removeTask(parentId) : null;
+  e.target.className.includes('task-card__footer__close-btn') ? verifyRemoveTask(parentId, e.target) : null;
   e.target.className.includes('item-checkbox') ? itemsCompleted(parentId, e.target) : null;
   e.target.className.includes('task-card__footer__urgency-btn') ? urgentBtn(parentId, e.target) : null;
 });
@@ -153,6 +153,27 @@ function updateDOM(array) {
 
 // ------- Remove tasks from  -------
 
+function verifyRemoveTask(parentId) {
+  var numTrue = 0;
+  var numTasks = 0;
+  tasksArray.map(item => {
+    if (item.id == parseInt(parentId)) {
+      numTasks = item.tasks.length
+      item.tasks.map(item => {
+        if(item.completed === true) {
+          numTrue++
+        }
+      })
+    }
+  })
+  runRemoveTask(numTrue, numTasks, parentId);
+}
+
+function runRemoveTask(numTrue, numTasks, parentId) {
+  (numTrue === numTasks) ? removeTask(parentId) : alert('All items need to be finished...')
+  
+}
+
 function removeTask(parentId) {
 	var newArray = tasksArray.map(item => {
     (item.id == parseInt(parentId)) ? item.deleteFromStorage(): null;
@@ -167,8 +188,8 @@ function itemsCompleted(parentId, childElementId) {
     (item.id == parseInt(parentId)) ? item.updateItem(parentId, childElementId): null;
     return item
   })
-  tasksArray = newArray;
-  updatePage(newArray)
+  taskHub.innerHTML = "";
+  reInstantiatingTasks()
 }
 
 function urgentBtn(parentId, element) {
