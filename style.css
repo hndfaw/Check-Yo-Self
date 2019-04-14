@@ -1,10 +1,10 @@
 /*----------Global Classes----------*/
 
 * {
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .global-input {
@@ -20,49 +20,49 @@
 }
 
 label {
-    margin-top: 25px;
-    margin-left: 5px; 
-    font-size: 13px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    color: #fff;
+  margin-top: 25px;
+  margin-left: 5px; 
+  font-size: 13px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
 }
 
 .global-btn {
-    height: 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 3px;
-    border: black 1px solid;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #1f1f3d;
-    color: #fff;
-    outline: none;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
+  border: black 1px solid;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #1f1f3d;
+  color: #fff;
+  outline: none;
 }
 
 /*----------Header----------*/
 
 header {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1f1f3d;
-    position: fixed;
-    top: 0;
-    left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f3d;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .header__title {
-    font-weight: 800;
-    margin-left: 10px;
-    color: #fff;
+  font-weight: 800;
+  margin-left: 10px;
+  color: #fff;
 }
 
 .header__title-yo {
@@ -84,26 +84,26 @@ header {
 }
 
 .header__form__search-btn {
-    background-color: lightgray;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border: 1px solid #1f1f3d;
-    border-right: 0;
-    cursor: pointer;
-    padding: 5px;
+  background-color: lightgray;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border: 1px solid #1f1f3d;
+  border-right: 0;
+  cursor: pointer;
+  padding: 5px;
 }
 
 /*----------Main----------*/
 
 main {
-    display: grid;
-    grid-template-columns: 300px auto;
-    width: 100%;
-    height: 94vh;
-    margin-top: 60px;
+  display: grid;
+  grid-template-columns: 300px auto;
+  width: 100%;
+  height: 94vh;
+  margin-top: 60px;
 }
 
 /*----------Tasks----------*/
@@ -114,14 +114,14 @@ main {
 
 .task-card__title,
 .task-card__items {
-    font-weight: 400;
-    border-bottom: 2px solid #c7d3d8;
-    width: 96%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    color: #1f1f3d;
-    font-size: 16px;
+  font-weight: 400;
+  border-bottom: 2px solid #c7d3d8;
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  color: #1f1f3d;
+  font-size: 16px;
 }
 
 .task-card {
@@ -173,48 +173,48 @@ main {
 }
 
 .sidebar__form {
-    display: flex;
-    flex-direction: column;
-    align-items: space-around;
-    border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  border-bottom: 1px solid black;
 }
 
 .sidebar__form__make-task-btn {
-    margin-top: 45px;
+  margin-top: 45px;
 }
 
 .sidebar__form__clear-all-btn {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .sidebar__form__urgency-fulter-btn {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
 .sidebar__form__todo-item-input {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    width: 85%;
-    border-right: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  width: 85%;
+  border-right: 0px;
 }
 
 .sidebar__form__todo-item-container {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    display: relative;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: relative;
 }
 
 .sidebar__form__todo-item-btn {
-    background-color: #1f1f3d;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border: 1px solid black;
-    cursor: pointer;
-    display: inline-block;
+  background-color: #1f1f3d;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border: 1px solid black;
+  cursor: pointer;
+  display: inline-block;
 }
 
 .sidebar__form__todo-item-btn-plus-one,
