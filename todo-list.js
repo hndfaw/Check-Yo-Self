@@ -48,7 +48,6 @@ class Task {
     items.splice(tasksArray.indexOf(this),1, this);
     this.updateStorage(items)
   }
-
 }
 
 class Item {
@@ -58,5 +57,4 @@ class Item {
     this.completed = false;
     this.completedImg = completedImg || "images/checkbox.svg";
   }
-
 }
