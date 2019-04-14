@@ -6,15 +6,23 @@ var taskHub = document.querySelector('.task-hub');
 var taskTitleInput = document.querySelector('.sidebar__form__todo-title-input');
 var taskCardItems = document.querySelector('.task-card__items');
 var sidebar = document.querySelector('.sidebar');
+var itemCheckbox = document.querySelector('.item-checkbox');
+var taskCard = document.getElementsByClassName('task-card');
 var tasksArray = JSON.parse(localStorage.getItem('tasks')) || [];
 var itemsArray = [];
 
 // ----------Event Listeners------------
 
 makeTaskBtn.addEventListener('click', verifyTaskTitle);
-sidebarTodoItemBtn.addEventListener('click', pushItemsToArray);
+sidebarTodoItemBtn.addEventListener('click', verifyItems);
 
 //-----------Add items to browser-----------
+
+function verifyItems() {
+  if(sidebarTodoItemInput.value != "") {
+    pushItemsToArray()
+  }
+}
 
 function pushItemsToArray() {
   var newItem = new Item (Date.now(), sidebarTodoItemInput.value)
@@ -45,7 +53,7 @@ function addTaskToDOM(newTask) {
       <div class="task-card__items">
         ${newTask.tasks.map((item) => `
         <div class="item-container">
-          <input type="checkbox" class="item-checkbox" >
+          <input type="checkbox" class="item-checkbox" data-completed="${item.completed}" data-id="${item.id}"  >
           <p>${item.item}</p>
         </div>
         `
@@ -134,9 +142,8 @@ function updateDOM(newTasksArray) {
 taskHub.addEventListener("click", function(e) {
   var parentId = e.target.parentNode.parentNode.parentNode.dataset.id;
   e.target.className.includes('task-card__footer__close-btn') ? removeTask(parentId) : null;
-
+  e.target.className.includes('item-checkbox') ? itemsCompleted(parentId, e.target) : null;
 });
-
 
 function removeTask(parentId) {
 	var newArray = tasksArray.map(item => {
@@ -147,3 +154,8 @@ function removeTask(parentId) {
   reInstantiatingTasks()
 }
 
+function itemsCompleted(parentId, childElementId) {
+	var newArray = tasksArray.map(item => {
+    (item.id == parseInt(parentId)) ? item.updateItem(parentId, childElementId): null;
+  })
+}

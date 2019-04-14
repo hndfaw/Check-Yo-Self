@@ -11,8 +11,7 @@ class Task {
         localStorage.setItem('tasks', strTasksArray);
     }
 
-
-    deleteFromStorage(parentEl) {
+    deleteFromStorage() {
         var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
         localStorageItems.splice(tasksArray.indexOf(this),1);
         localStorage.removeItem('tasks');
@@ -20,13 +19,21 @@ class Task {
     }
 
 
-    // updateToDo() {
-
-    // }
-
     // updateTask() {
 
     // }
+
+    updateItem(parentId, childElementId) {
+        var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
+        this.tasks.map(item => {
+            (item.id == parseInt(childElementId.dataset.id)) ? item.completed = !item.completed : null;
+          })
+       localStorageItems.splice(tasksArray.indexOf(this),1, this);
+       localStorage.removeItem('tasks');
+       localStorage.setItem('tasks', JSON.stringify(localStorageItems))
+       console.log(localStorage)
+
+    }
 
     // updateUrgency() {
         //  this.urgent = !this.urgent;
@@ -39,6 +46,4 @@ class Item {
         this.item = item;
         this.completed = false;
     }
-
-
 }
