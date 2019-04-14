@@ -27,9 +27,21 @@ class Task {
     var items = JSON.parse(localStorage.getItem('tasks'))
     this.tasks.map(item => {
         (item.id == parseInt(childElementId.dataset.id)) ? item.completed = !item.completed : null;
+        (item.id == parseInt(childElementId.dataset.id)) ? this.updateItemIcon(item) : null;
+        
       })
     items.splice(tasksArray.indexOf(this),1, this);
     this.updateStorage(items)
+  }
+
+  updateItemIcon(item) {
+    if (item.completed === false) {
+      console.log('Not complted');
+      item.completedImg = "images/checkbox.svg"
+    } else {
+      console.log('Completed');
+      item.completedImg = "images/checkbox-active.svg"
+    }
   }
 
   updateUrgency() {
@@ -38,7 +50,7 @@ class Task {
     (this.urgent === false) ? this.urgentImg = "images/urgent.svg" : this.urgentImg = "images/urgent-active.svg";
     items.splice(tasksArray.indexOf(this),1, this);
     this.updateStorage(items)
-    console.log(this)
+       
   }
 
    // updateTask() {
@@ -47,9 +59,14 @@ class Task {
 }
 
 class Item {
-  constructor(id, item) {
+  constructor(id, item, completedImg) {
     this.id = id;
     this.item = item;
     this.completed = false;
+    this.completedImg = completedImg || "images/checkbox.svg";
+  }
+
+  myMethod() {
+    console.log(ok)
   }
 }

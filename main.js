@@ -52,7 +52,7 @@ function addTaskToDOM(newTask) {
     <div class="task-card__items task-card-title-item-${newTask.urgent}">
       ${newTask.tasks.map((item) => `
       <div class="item-container">
-        <img src="images/checkbox.svg" class="item-checkbox" data-id="${item.id}">
+        <img src="${item.completedImg}" class="item-checkbox" data-id="${item.id}">
         <p class="text-${item.completed} item-checkbox-text" data-id="${item.id}" >${item.item}</p>
       </div>
       `
