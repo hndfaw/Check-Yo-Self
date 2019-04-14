@@ -28,27 +28,25 @@ class Task {
     this.tasks.map(item => {
         (item.id == parseInt(childElementId.dataset.id)) ? item.completed = !item.completed : null;
         (item.id == parseInt(childElementId.dataset.id)) ? this.updateItemIcon(item) : null;
-        
-      })
+    })
     items.splice(tasksArray.indexOf(this),1, this);
     this.updateStorage(items)
   }
 
   updateItemIcon(item) {
-    if (item.completed === false) {
-      item.completedImg = "images/checkbox.svg"
-    } else {
-      item.completedImg = "images/checkbox-active.svg"
-    }
+    (item.completed === false) ?
+    item.completedImg = "images/checkbox.svg" :
+    item.completedImg = "images/checkbox-active.svg";
   }
 
   updateUrgency() {
     var items = JSON.parse(localStorage.getItem('tasks'))
     this.urgent = !this.urgent;
-    (this.urgent === false) ? this.urgentImg = "images/urgent.svg" : this.urgentImg = "images/urgent-active.svg";
+    (this.urgent === false) ?
+    this.urgentImg = "images/urgent.svg" :
+    this.urgentImg = "images/urgent-active.svg";
     items.splice(tasksArray.indexOf(this),1, this);
     this.updateStorage(items)
-       
   }
 
    // updateTask() {

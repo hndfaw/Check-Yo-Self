@@ -1,28 +1,56 @@
+// ---------- Global Variables ------------
+
+              //-----Inputs----
 var sidebarTodoItemInput = document.querySelector('.sidebar__form__todo-item-input');
-var sidebarTodoItemBtn = document.querySelector('.sidebar__form__todo-item-btn');
-var sidebarListItems = document.querySelector('.sidebar__form-list-items');
-var makeTaskBtn = document.querySelector('.sidebar__form__make-task-btn');
-var taskHub = document.querySelector('.task-hub');
 var taskTitleInput = document.querySelector('.sidebar__form__todo-title-input');
-var taskCardItems = document.querySelector('.task-card__items');
+              //-----Buttons----
+var itemMakerBtn = document.querySelector('.sidebar__form__todo-item-btn');
+var taskMakerBtn = document.querySelector('.sidebar__form__make-task-btn');
+var clearAllbtn = document.querySelector('.sidebar__form__clear-all-btn');
+              //----Sections----
+var taskHub = document.querySelector('.task-hub');
 var sidebar = document.querySelector('.sidebar');
+              //----Items ------
+var sidebarListItems = document.querySelector('.sidebar__form-list-items');
 var taskCard = document.getElementsByClassName('task-card');
+              //----Arrays -----
 var tasksArray = JSON.parse(localStorage.getItem('tasks')) || [];
 var itemsArray = [];
 
-// ----------Event Listeners------------
+// ---------- On Load ------------------
 
-makeTaskBtn.addEventListener('click', verifyTaskTitle);
-sidebarTodoItemBtn.addEventListener('click', verifyItems);
+if (tasksArray.length != 0) {
+  reInstantiatingTasks()
+}
 
-//-----------Add items to browser-----------
+// ----------Event Listeners--------------
+
+itemMakerBtn.addEventListener('click', verifyItems);
+taskMakerBtn.addEventListener('click', verifyTaskTitle);
+clearAllbtn.addEventListener('click', clearFields);
+
+// ----------Event Bubbling------------
+
+sidebar.addEventListener("click", function(e) {
+  e.preventDefault();
+  var parentEl = e.target.parentNode.parentNode;
+  e.target.className.includes('item-delete-btn') ? removeFromArray(parentEl) : null;
+});
+
+taskHub.addEventListener("click", function(e) {
+  var parentId = e.target.parentNode.parentNode.parentNode.dataset.id;
+  e.target.className.includes('task-card__footer__close-btn') ? removeTask(parentId) : null;
+  e.target.className.includes('item-checkbox') ? itemsCompleted(parentId, e.target) : null;
+  e.target.className.includes('task-card__footer__urgency-btn') ? urgentBtn(parentId, e.target) : null;
+});
+
+//-----------Adding items-----------
 
 function verifyItems() {
   if(sidebarTodoItemInput.value != "") {
     pushItemsToArray()
   }
 }
-
 function pushItemsToArray() {
   var newItem = new Item (Date.now(), sidebarTodoItemInput.value)
   itemsArray.push(newItem);
@@ -42,7 +70,23 @@ function pushItemsToArray() {
     sidebarTodoItemInput.value = "";
 };
 
-// ------------ Send elements to local storage ----------------
+function verifyTaskTitle() {
+  (taskTitleInput.value != "" && itemsArray.length != 0) ? createTask() : alert('Please add title and item/s!');
+  }
+  
+function createTask() {
+  var newTask = new Task (Date.now(), taskTitleInput.value, itemsArray);
+  tasksArray.push(newTask);
+  newTask.saveToStorage(tasksArray)
+  addTaskToDOM(newTask);
+  clearFields();
+}
+
+function clearFields() {
+  taskTitleInput.value = "";
+  sidebarListItems.innerHTML = "";
+  sidebarTodoItemInput.value = "";
+}
 
 function addTaskToDOM(newTask) {
 
@@ -74,36 +118,7 @@ function addTaskToDOM(newTask) {
     itemsArray = [];
 }
 
-function verifyTaskTitle(e) {
-  e.preventDefault();
-  if (taskTitleInput.value != "" && itemsArray.length != 0) {
-    createTask(e);
-  } else {
-    alert('Please add title and item/s!');
-  }
-  
-}
-
-function createTask() {
-  var newTask = new Task (Date.now(), taskTitleInput.value, itemsArray);
-  tasksArray.push(newTask);
-  newTask.saveToStorage(tasksArray)
-  addTaskToDOM(newTask);
-  clearFields();
-}
-
-function clearFields() {
-  taskTitleInput.value = "";
-  sidebarListItems.innerHTML = "";
-  sidebarTodoItemInput.value = "";
-}
-
-sidebar.addEventListener("click", function(e) {
-  e.preventDefault();
-  var parentEl = e.target.parentNode.parentNode;
-  e.target.className.includes('item-delete-btn') ? removeFromArray(parentEl) : null;
-  e.target.className.includes('sidebar__form__clear-all-btn') ? clearFields() : null;
-});
+// -------- Remove Items ------------
 
 function removeFromArray(parentEl) {
   var parentId = parentEl.dataset.id;
@@ -115,12 +130,6 @@ function removeFromArray(parentEl) {
     parentEl.style.display = "none";
   })
   itemsArray = updatedItemsArray;
-}
-
-
-
-if (tasksArray.length != 0) {
-  reInstantiatingTasks()
 }
  
 function reInstantiatingTasks() {
@@ -142,12 +151,6 @@ function updateDOM(array) {
 
 // ------- Remove tasks from  -------
 
-taskHub.addEventListener("click", function(e) {
-  var parentId = e.target.parentNode.parentNode.parentNode.dataset.id;
-  e.target.className.includes('task-card__footer__close-btn') ? removeTask(parentId) : null;
-  e.target.className.includes('item-checkbox') ? itemsCompleted(parentId, e.target) : null;
-  e.target.className.includes('task-card__footer__urgency-btn') ? urgentBtn(parentId, e.target) : null;
-});
 
 function removeTask(parentId) {
 	var newArray = tasksArray.map(item => {
