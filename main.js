@@ -46,7 +46,7 @@ function pushItemsToArray() {
 
 function addTaskToDOM(newTask) {
 
-  taskHub.innerHTML += `
+  taskHub.innerHTML = `
   <article class="task-card task-card-${newTask.urgent}" data-id="${newTask.id}">
     <h3 class="task-card__title task-card-title-item-${newTask.urgent}">${newTask.title}</h3>
     <div class="task-card__items task-card-title-item-${newTask.urgent}">
@@ -70,6 +70,7 @@ function addTaskToDOM(newTask) {
     </div>
   </article>
   `
+  + taskHub.innerHTML;
     itemsArray = [];
 }
 
