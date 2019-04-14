@@ -29,7 +29,7 @@ if (tasksArray.length != 0) {
 itemMakerBtn.addEventListener('click', verifyItems);
 taskMakerBtn.addEventListener('click', verifyTaskTitle);
 clearAllbtn.addEventListener('click', clearFields);
-urgencyFilterBtn.addEventListener('click', urgencyFilterValue);
+urgencyFilterBtn.addEventListener('click', verifyUrgentTasks);
 
 // ----------Event Bubbling------------
 
@@ -210,6 +210,18 @@ function updatePage(updatedTasksArray) {
 }
 
 // ----- urgency filter ------
+
+function verifyUrgentTasks() {
+  var numUrgents = 0
+  tasksArray.map(function(item) {
+    item.urgent === true ? numUrgents++ : null;
+  })
+  runUrgencyFilterVlue(numUrgents)
+}
+
+function runUrgencyFilterVlue(numUrgents) {
+  numUrgents > 0 ? urgencyFilterValue() : null;
+}
 
 function urgencyFilterValue() {
   var dataValue = urgencyFilterBtn.dataset;
