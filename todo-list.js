@@ -11,9 +11,14 @@ class Task {
         localStorage.setItem('tasks', strTasksArray);
     }
 
-    // deleteFromStorage() {
 
-    // }
+    deleteFromStorage(parentEl) {
+        var localStorageItems = JSON.parse(localStorage.getItem('tasks'))
+        localStorageItems.splice(tasksArray.indexOf(this),1);
+        localStorage.removeItem('tasks');
+        localStorage.setItem('tasks', JSON.stringify(localStorageItems))
+    }
+
 
     // updateToDo() {
 
@@ -34,4 +39,6 @@ class Item {
         this.item = item;
         this.completed = false;
     }
+
+
 }

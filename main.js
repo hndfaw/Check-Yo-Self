@@ -3,26 +3,24 @@ var sidebarTodoItemBtn = document.querySelector('.sidebar__form__todo-item-btn')
 var sidebarListItems = document.querySelector('.sidebar__form-list-items');
 var makeTaskBtn = document.querySelector('.sidebar__form__make-task-btn');
 var taskHub = document.querySelector('.task-hub');
-var taskInput = document.querySelector('.sidebar__form__todo-title-input');
+var taskTitleInput = document.querySelector('.sidebar__form__todo-title-input');
 var taskCardItems = document.querySelector('.task-card__items');
 var sidebar = document.querySelector('.sidebar');
-var tasksArray = [];
+var tasksArray = JSON.parse(localStorage.getItem('tasks')) || [];
 var itemsArray = [];
 
 // ----------Event Listeners------------
 
-makeTaskBtn.addEventListener('click', createTask);
-sidebarTodoItemBtn.addEventListener('click', pushItemsToArray)
+makeTaskBtn.addEventListener('click', verifyTaskTitle);
+sidebarTodoItemBtn.addEventListener('click', pushItemsToArray);
 
 //-----------Add items to browser-----------
 
 function pushItemsToArray() {
   var newItem = new Item (Date.now(), sidebarTodoItemInput.value)
   itemsArray.push(newItem);
-  
   addItemToDOM(newItem);
 }
-
 
  function addItemToDOM(newItem) {
     if (sidebarTodoItemInput.value != "") {
@@ -35,31 +33,31 @@ function pushItemsToArray() {
     `
     }
     sidebarTodoItemInput.value = "";
-    
 };
-
-
 
 // ------------ Send elements to local storage ----------------
 
 function addTaskToDOM(newTask) {
 
     taskHub.innerHTML += `
-    <article class="task-card">
+    <article class="task-card" data-id="${newTask.id}">
       <h3 class="task-card__title">${newTask.title}</h3>
       <div class="task-card__items">
-
         ${newTask.tasks.map((item) => `
-        <input type="checkbox" class="item-checkbox">
-        <div>${item.item}</div>`).join('')}
+        <div class="item-container">
+          <input type="checkbox" class="item-checkbox" >
+          <p>${item.item}</p>
+        </div>
+        `
+        ).join('')}
 
       </div>
       <div class="task-card__footer">
-        <div class="task-card__footer__container">
+        <div class="task-card__footer__container task-card-urgent-container">
           <img class="task-card__footer__urgency-btn" src="images/urgent.svg">
           <p class="task-card__footer__text">URGENT</p>
         </div>
-        <div class="task-card__footer__container">
+        <div class="task-card__footer__container task-card-delete-container">
           <img class="task-card__footer__close-btn" src="images/delete.svg">
           <p class="task-card__footer__text">DELETE</p>
         </div>
@@ -69,9 +67,18 @@ function addTaskToDOM(newTask) {
     itemsArray = [];
 }
 
-function createTask(e) {
+function verifyTaskTitle(e) {
   e.preventDefault();
-  var newTask = new Task (Date.now(), taskInput.value, itemsArray);
+  if (taskTitleInput.value != "" && itemsArray.length != 0) {
+    createTask(e);
+  } else {
+    alert('Please add title and item/s!');
+  }
+  
+}
+
+function createTask() {
+  var newTask = new Task (Date.now(), taskTitleInput.value, itemsArray);
   tasksArray.push(newTask);
   newTask.saveToStorage(tasksArray)
   addTaskToDOM(newTask);
@@ -79,19 +86,17 @@ function createTask(e) {
 }
 
 function clearFields() {
-  taskInput.value = "";
+  taskTitleInput.value = "";
   sidebarListItems.innerHTML = "";
 }
 
 sidebar.addEventListener("click", function(e) {
   var parentEl = e.target.parentNode.parentNode;
   e.target.className.includes('item-delete-btn') ? removeFromArray(parentEl) : null;
-  
 });
 
 function removeFromArray(parentEl) {
   var parentId = parentEl.dataset.id;
-  console.log(itemsArray)
   var updatedItemsArray = []
   itemsArray.map(function(item) {
     if(parentId != item.id) {
@@ -99,9 +104,46 @@ function removeFromArray(parentEl) {
     }
     parentEl.style.display = "none";
   })
-
   itemsArray = updatedItemsArray;
-  console.log(itemsArray)
+}
+
+if (tasksArray.length != 0) {
+  reInstantiatingTasks()
+}
+ 
+function reInstantiatingTasks() {
+  var myArray = JSON.parse(localStorage.getItem('tasks'))
+
+	var newTasksArray = myArray.map(task => {
+		task = new Task(task.id, task.title, task.tasks, task.urgent)
+    return task;
+	}) 
+  tasksArray = newTasksArray;
   
+  updateDOM(newTasksArray)
+}
+
+function updateDOM(newTasksArray) {
+  newTasksArray.forEach(item => {
+    addTaskToDOM(item)
+  });
+}
+
+// ------- Remove tasks from  -------
+
+taskHub.addEventListener("click", function(e) {
+  var parentId = e.target.parentNode.parentNode.parentNode.dataset.id;
+  e.target.className.includes('task-card__footer__close-btn') ? removeTask(parentId) : null;
+
+});
+
+
+function removeTask(parentId) {
+	var newArray = tasksArray.map(item => {
+    (item.id == parseInt(parentId)) ? item.deleteFromStorage(): null;
+    return item
+  })
+  taskHub.innerHTML = "";
+  reInstantiatingTasks()
 }
 

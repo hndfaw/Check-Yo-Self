@@ -151,11 +151,7 @@ main {
   color: #3c6577;
 }
 
-.task-card__footer__container:hover
-.task-card__footer__text {
-  font-size: 10px;
-  color: black;
-}
+
 
 .task-card__footer__container {
   display: flex;
@@ -259,5 +255,14 @@ main {
   align-items: center;
   display: flex;
   align-items: flex-start;
+}
+
+.item-container {
+  display: flex;
+}
+
+.item-checkbox {
+  margin-top: 7px;
+  margin-right: 5px;
 }
 
