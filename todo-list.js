@@ -36,10 +36,8 @@ class Task {
 
   updateItemIcon(item) {
     if (item.completed === false) {
-      console.log('Not complted');
       item.completedImg = "images/checkbox.svg"
     } else {
-      console.log('Completed');
       item.completedImg = "images/checkbox-active.svg"
     }
   }

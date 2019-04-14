@@ -95,11 +95,14 @@ function createTask() {
 function clearFields() {
   taskTitleInput.value = "";
   sidebarListItems.innerHTML = "";
+  sidebarTodoItemInput.value = "";
 }
 
 sidebar.addEventListener("click", function(e) {
+  e.preventDefault();
   var parentEl = e.target.parentNode.parentNode;
   e.target.className.includes('item-delete-btn') ? removeFromArray(parentEl) : null;
+  e.target.className.includes('sidebar__form__clear-all-btn') ? clearFields() : null;
 });
 
 function removeFromArray(parentEl) {
@@ -113,6 +116,8 @@ function removeFromArray(parentEl) {
   })
   itemsArray = updatedItemsArray;
 }
+
+
 
 if (tasksArray.length != 0) {
   reInstantiatingTasks()
