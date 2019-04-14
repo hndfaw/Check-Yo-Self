@@ -38,6 +38,7 @@ class Task {
     (this.urgent === false) ? this.urgentImg = "images/urgent.svg" : this.urgentImg = "images/urgent-active.svg";
     items.splice(tasksArray.indexOf(this),1, this);
     this.updateStorage(items)
+    console.log(this)
   }
 
    // updateTask() {

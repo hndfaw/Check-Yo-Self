@@ -161,10 +161,24 @@ main {
   height: 40px;
 }
 
-.true {
+.text-true {
   color: #828282;
   font-style: italic;
 }
+
+.task-card-true {
+  background-color: #ffe89d;
+  border-color: #ffc30c;
+}
+
+.task-card-title-item-true {
+  border-color: #ffc30c;
+}
+
+.task-card__footer__text-true {
+  color: #b23a25;
+}
+
 
 /*----------Sidebar----------*/
 
