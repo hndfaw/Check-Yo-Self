@@ -34,7 +34,7 @@ taskMakerBtn.addEventListener('click', verifyTaskTitle);
 clearAllbtn.addEventListener('click', clearFields);
 urgencyFilterBtn.addEventListener('click', verifyUrgentTasks);
 searchBtn.addEventListener('click', searchFunction);
-searchInput.addEventListener('keyup', clearSearch)
+searchInput.addEventListener('keyup', clearSearch);
 
 // ----------Event Bubbling------------
 
@@ -49,6 +49,26 @@ taskHub.addEventListener("click", function(e) {
   e.target.className.includes('task-card__footer__close-btn') ? verifyRemoveTask(parentId, e.target) : null;
   e.target.className.includes('item-checkbox') ? itemsCompleted(parentId, e.target) : null;
   e.target.className.includes('task-card__footer__urgency-btn') ? urgentBtn(parentId, e.target) : null;
+});
+
+/*------------Enters Activating Functions------*/
+
+searchInput.addEventListener("keyup", function(e) {
+  if (e.keyCode === 13) {
+    searchFunction();
+  }
+});
+
+sidebarTodoItemInput.addEventListener("keyup", function(e) {
+  if (e.keyCode === 13) {
+    verifyItems();
+  }
+});
+
+taskTitleInput.addEventListener("keyup", function(e) {
+  if (e.keyCode === 13) {
+    verifyTaskTitle();
+  }
 });
 
 /*----------------Add Items------------------*/
@@ -247,28 +267,6 @@ function urgencyFilter() {
 }
 
 /*------------------Search function-----------------*/
-
-// function capSearchValue() {
-//   var inputValue = searchInput.value
-//   var capsInput = inputValue.toUpperCase();
-//     for (var i = 0; i < taskTitle.length; i++) {
-//       var title = taskTitle[i].textContent.toUpperCase();
-//       var parentId = taskTitle[i].parentNode.dataset.id;
-//       filterSearchedRes(title, capsInput, parentId)
-//     }
-    
-//   }
-
-// function filterSearchedRes(title, input, parentId) {
-//   var filteredArray = [];
-//   if(title.indexOf(input) > -1) {
-//     tasksArray.map(function(item) {
-//       (item.id === parseInt(parentId)) ? filteredArray.push(item) : null;   
-//     })
-//     updatePage(filteredArray)
-//     console.log(filteredArray)
-//   }
-// }
 
 function searchFunction() {
   var inputValue = searchInput.value.toUpperCase();
