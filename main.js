@@ -1,19 +1,22 @@
-// ---------- Global Variables ------------
+// -----------------Querie Selectors-----------------
 
               //-----Inputs----
 var sidebarTodoItemInput = document.querySelector('.sidebar__form__todo-item-input');
 var taskTitleInput = document.querySelector('.sidebar__form__todo-title-input');
+var searchInput = document.querySelector('.header__form__search-input');
               //-----Buttons----
 var itemMakerBtn = document.querySelector('.sidebar__form__todo-item-btn');
 var taskMakerBtn = document.querySelector('.sidebar__form__make-task-btn');
 var clearAllbtn = document.querySelector('.sidebar__form__clear-all-btn');
 var urgencyFilterBtn = document.querySelector('.sidebar__form__urgency-fulter-btn');
+var searchBtn = document.querySelector('.header__form__search-btn');
               //----Sections----
 var taskHub = document.querySelector('.task-hub');
 var sidebar = document.querySelector('.sidebar');
               //----Items ------
 var sidebarListItems = document.querySelector('.sidebar__form-list-items');
 var taskCard = document.getElementsByClassName('task-card');
+var taskTitle = document.getElementsByClassName('task-card__title');
               //----Arrays -----
 var tasksArray = JSON.parse(localStorage.getItem('tasks')) || [];
 var itemsArray = [];
@@ -30,6 +33,8 @@ itemMakerBtn.addEventListener('click', verifyItems);
 taskMakerBtn.addEventListener('click', verifyTaskTitle);
 clearAllbtn.addEventListener('click', clearFields);
 urgencyFilterBtn.addEventListener('click', verifyUrgentTasks);
+searchBtn.addEventListener('click', searchFunction);
+searchInput.addEventListener('keyup', clearSearch)
 
 // ----------Event Bubbling------------
 
@@ -46,7 +51,7 @@ taskHub.addEventListener("click", function(e) {
   e.target.className.includes('task-card__footer__urgency-btn') ? urgentBtn(parentId, e.target) : null;
 });
 
-//-----------Adding items-----------
+/*----------------Add Items------------------*/
 
 function verifyItems() {
   if(sidebarTodoItemInput.value != "") {
@@ -120,7 +125,7 @@ function addTaskToDOM(newTask) {
     itemsArray = [];
 }
 
-// -------- Remove Items ------------
+/*------------Remove Items-------------------*/
 
 function removeFromArray(parentEl) {
   var parentId = parentEl.dataset.id;
@@ -151,7 +156,6 @@ function updateDOM(array) {
   });
 }
 
-// ------- Remove tasks from  -------
 
 function verifyRemoveTask(parentId) {
   var numTrue = 0;
@@ -202,14 +206,14 @@ function urgentBtn(parentId, element) {
     reInstantiatingTasks()
   }
 
-// ------ Update Page -------
+/*-----------Update Page------------*/
 
 function updatePage(updatedTasksArray) {
   taskHub.innerHTML = ""
   updateDOM(updatedTasksArray);
 }
 
-// ----- urgency filter ------
+/*---------------urgency filter-------------*/
 
 function verifyUrgentTasks() {
   var numUrgents = 0
@@ -240,4 +244,43 @@ function urgencyFilter() {
     (item.urgent === true) ? filteredArray.push(item) : null;   
   })
   updatePage(filteredArray)
+}
+
+/*------------------Search function-----------------*/
+
+// function capSearchValue() {
+//   var inputValue = searchInput.value
+//   var capsInput = inputValue.toUpperCase();
+//     for (var i = 0; i < taskTitle.length; i++) {
+//       var title = taskTitle[i].textContent.toUpperCase();
+//       var parentId = taskTitle[i].parentNode.dataset.id;
+//       filterSearchedRes(title, capsInput, parentId)
+//     }
+    
+//   }
+
+// function filterSearchedRes(title, input, parentId) {
+//   var filteredArray = [];
+//   if(title.indexOf(input) > -1) {
+//     tasksArray.map(function(item) {
+//       (item.id === parseInt(parentId)) ? filteredArray.push(item) : null;   
+//     })
+//     updatePage(filteredArray)
+//     console.log(filteredArray)
+//   }
+// }
+
+function searchFunction() {
+  var inputValue = searchInput.value.toUpperCase();
+  for (i = 0; i < taskTitle.length; i++) {
+      if (taskTitle[i].textContent.toUpperCase().indexOf(inputValue) < 0) {
+        taskTitle[i].parentNode.style.display = 'none';
+    }
+  }
+}
+
+function clearSearch() {
+  if(searchInput.value == "") {
+    updatePage(tasksArray);
+  }
 }
