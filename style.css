@@ -58,6 +58,7 @@ header {
   top: 0;
   left: 0;
   z-index: 99;
+  border-bottom: 1px solid #587a8a;
 }
 
 .header__title {
@@ -336,6 +337,7 @@ background-color: #ef4a23;
     width:  100%; 
     background-color: #fafdff;
     border: 2px solid #c7d3d8;
+    max-width: 90%;
   }
 
   .task-card-true {
