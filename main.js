@@ -23,9 +23,8 @@ var itemsArray = [];
 
 // ---------- On Load ------------------
 
-if (tasksArray.length != 0) {
-  reInstantiatingTasks()
-}
+ (tasksArray.length != 0) ? reInstantiatingTasks() : null;
+
 
 // ----------Event Listeners--------------
 
@@ -54,29 +53,22 @@ taskHub.addEventListener("click", function(e) {
 /*------------Enters Activating Functions------*/
 
 searchInput.addEventListener("keyup", function(e) {
-  if (e.keyCode === 13) {
-    searchFunction();
-  }
+   (e.keyCode === 13) ? searchFunction() : null;
 });
 
 sidebarTodoItemInput.addEventListener("keyup", function(e) {
-  if (e.keyCode === 13) {
-    verifyItems();
-  }
+   (e.keyCode === 13) ? verifyItems() : null;
+  
 });
 
 taskTitleInput.addEventListener("keyup", function(e) {
-  if (e.keyCode === 13) {
-    verifyTaskTitle();
-  }
+  (e.keyCode === 13) ? verifyTaskTitle() : null;
 });
 
 /*----------------Add Items------------------*/
 
 function verifyItems() {
-  if(sidebarTodoItemInput.value != "") {
-    pushItemsToArray()
-  }
+  (sidebarTodoItemInput.value != "") ? pushItemsToArray() : null;
 }
 function pushItemsToArray() {
   var newItem = new Item (Date.now(), sidebarTodoItemInput.value)
