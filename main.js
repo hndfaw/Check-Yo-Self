@@ -169,8 +169,6 @@ function updateDOM(array) {
   });
 }
 
-/// i'm here... replace this function...
-
 function verifyRemoveTask(parentId) {
   tasksArray.map(item => {
     if (item.id == parseInt(parentId)) {
