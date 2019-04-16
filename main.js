@@ -262,6 +262,7 @@ function urgencyFilter() {
 
 function searchFunction() {
   var inputValue = searchInput.value.toUpperCase();
+  console.log(inputValue)
   for (i = 0; i < taskTitle.length; i++) {
       if (taskTitle[i].textContent.toUpperCase().indexOf(inputValue) < 0) {
         taskTitle[i].parentNode.style.display = 'none';

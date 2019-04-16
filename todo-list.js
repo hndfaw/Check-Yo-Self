@@ -34,17 +34,13 @@ class Task {
   }
 
   updateItemIcon(item) {
-    (item.completed === false) ?
-    item.completedImg = "images/checkbox.svg" :
-    item.completedImg = "images/checkbox-active.svg";
+    !item.completed ? item.completedImg = "images/checkbox.svg" : item.completedImg = "images/checkbox-active.svg";
   }
 
   updateUrgency() {
     var items = JSON.parse(localStorage.getItem('tasks'))
     this.urgent = !this.urgent;
-    (this.urgent === false) ?
-    this.urgentImg = "images/urgent.svg" :
-    this.urgentImg = "images/urgent-active.svg";
+    !this.urgent ? this.urgentImg = "images/urgent.svg" : this.urgentImg = "images/urgent-active.svg";
     items.splice(tasksArray.indexOf(this),1, this);
     this.updateStorage(items)
   }
