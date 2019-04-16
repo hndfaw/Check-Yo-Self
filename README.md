@@ -13,3 +13,4 @@
 * Understand the difference between the data model and how the data is displayed on the DOM
 * Ability to match/recreate a UI and create a great UX
 
+![test image]()
