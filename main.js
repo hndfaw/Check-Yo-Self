@@ -169,25 +169,19 @@ function updateDOM(array) {
   });
 }
 
-
 function verifyRemoveTask(parentId) {
-  var numTrue = 0;
-  var numTasks = 0;
   tasksArray.map(item => {
     if (item.id == parseInt(parentId)) {
-      numTasks = item.tasks.length
-      item.tasks.map(item => {
-        if(item.completed === true) {
-          numTrue++
-        }
+      var test = item.tasks.every(el => {
+        return el.completed;
       })
+      runRemoveTask(test, parentId);
     }
   })
-  runRemoveTask(numTrue, numTasks, parentId);
 }
 
-var runRemoveTask = (numTrue, numTasks, parentId) => {
-  (numTrue === numTasks) ? removeTask(parentId) : alert('All items need to be finished...')
+var runRemoveTask = (test, parentId) => {
+  test ? removeTask(parentId) : alert('All items need to be finished...')
 }
 
 var removeTask = parentId => {
@@ -256,7 +250,6 @@ var urgencyFilter = () => {
 
 function searchFunction() {
   var inputValue = searchInput.value.toUpperCase();
-  console.log(inputValue)
   for (i = 0; i < taskTitle.length; i++) {
       if (taskTitle[i].textContent.toUpperCase().indexOf(inputValue) < 0) {
         taskTitle[i].parentNode.style.display = 'none';
