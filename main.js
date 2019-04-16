@@ -191,31 +191,26 @@ var runRemoveTask = (numTrue, numTasks, parentId) => {
 }
 
 var removeTask = parentId => {
-	var newArray = tasksArray.map(item => {
-    (item.id == parseInt(parentId)) ? item.deleteFromStorage(): null;
-    return item
+  var updatedArray = [];
+tasksArray.map(item => {
+    (item.id == parseInt(parentId)) ? item.deleteFromStorage(): updatedArray.push(item);
   })
-  taskHub.innerHTML = "";
-  reInstantiatingTasks()
+  updatePage(updatedArray)
 }
 
 var itemsCompleted = (parentId, childElementId) => {
-	var newArray = tasksArray.map(item => {
+	tasksArray.map(item => {
     (item.id == parseInt(parentId)) ? item.updateItem(parentId, childElementId): null;
     return item
   })
-  taskHub.innerHTML = "";
-  reInstantiatingTasks()
+  updatePage(tasksArray)
 }
 
 var urgentBtn = (parentId, element) => {
-    var newArray = tasksArray.map(item => {
-      (item.id == parseInt(parentId)) ? item.updateUrgency(element) : null;
-      return item
+  tasksArray.map(item => {
+      (item.id == parseInt(parentId)) ? item.updateUrgency() : null;
     })
-
-    taskHub.innerHTML = "";
-    reInstantiatingTasks()
+    updatePage(tasksArray)
   }
 
 /*-----------Update Page------------*/
