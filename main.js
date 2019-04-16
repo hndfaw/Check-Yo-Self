@@ -70,13 +70,14 @@ taskTitleInput.addEventListener("keyup", function(e) {
 function verifyItems() {
   (sidebarTodoItemInput.value != "") ? pushItemsToArray() : null;
 }
-function pushItemsToArray() {
+
+var pushItemsToArray = () => {
   var newItem = new Item (Date.now(), sidebarTodoItemInput.value)
   itemsArray.push(newItem);
   addItemToDOM(newItem);
 }
 
- function addItemToDOM(newItem) {
+ var addItemToDOM = newItem => {
     if (sidebarTodoItemInput.value != "") {
         sidebarListItems.innerHTML += `
        <p class="item-template-literals" data-id="${newItem.id}">
@@ -93,7 +94,7 @@ function verifyTaskTitle() {
   (taskTitleInput.value != "" && itemsArray.length != 0) ? createTask() : alert('Please add title and item/s!');
   }
   
-function createTask() {
+var createTask = () => {
   var newTask = new Task (Date.now(), taskTitleInput.value, itemsArray);
   tasksArray.push(newTask);
   newTask.saveToStorage(tasksArray)
@@ -139,7 +140,7 @@ function addTaskToDOM(newTask) {
 
 /*------------Remove Items-------------------*/
 
-function removeFromArray(parentEl) {
+var removeFromArray = parentEl => {
   var parentId = parentEl.dataset.id;
   var updatedItemsArray = []
   itemsArray.map(function(item) {
@@ -185,12 +186,11 @@ function verifyRemoveTask(parentId) {
   runRemoveTask(numTrue, numTasks, parentId);
 }
 
-function runRemoveTask(numTrue, numTasks, parentId) {
+var runRemoveTask = (numTrue, numTasks, parentId) => {
   (numTrue === numTasks) ? removeTask(parentId) : alert('All items need to be finished...')
-  
 }
 
-function removeTask(parentId) {
+var removeTask = parentId => {
 	var newArray = tasksArray.map(item => {
     (item.id == parseInt(parentId)) ? item.deleteFromStorage(): null;
     return item
@@ -199,7 +199,7 @@ function removeTask(parentId) {
   reInstantiatingTasks()
 }
 
-function itemsCompleted(parentId, childElementId) {
+var itemsCompleted = (parentId, childElementId) => {
 	var newArray = tasksArray.map(item => {
     (item.id == parseInt(parentId)) ? item.updateItem(parentId, childElementId): null;
     return item
@@ -208,7 +208,7 @@ function itemsCompleted(parentId, childElementId) {
   reInstantiatingTasks()
 }
 
-function urgentBtn(parentId, element) {
+var urgentBtn = (parentId, element) => {
     var newArray = tasksArray.map(item => {
       (item.id == parseInt(parentId)) ? item.updateUrgency(element) : null;
       return item
@@ -235,11 +235,9 @@ function verifyUrgentTasks() {
   runUrgencyFilterVlue(numUrgents)
 }
 
-function runUrgencyFilterVlue(numUrgents) {
-  numUrgents > 0 ? urgencyFilterValue() : null;
-}
+var runUrgencyFilterVlue = numUrgents => {numUrgents > 0 ? urgencyFilterValue() : null;}
 
-function urgencyFilterValue() {
+var urgencyFilterValue = () => {
   var dataValue = urgencyFilterBtn.dataset;
   if (dataValue.value == "false") {
     dataValue.value = "true";
@@ -250,9 +248,9 @@ function urgencyFilterValue() {
   }
 }
 
-function urgencyFilter() {  
+var urgencyFilter = () => {  
   var filteredArray = [];
-  tasksArray.map(function(item) {
+  tasksArray.map(item => {
     (item.urgent === true) ? filteredArray.push(item) : null;   
   })
   updatePage(filteredArray)
