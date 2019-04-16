@@ -195,7 +195,8 @@ var removeTask = parentId => {
 tasksArray.map(item => {
     (item.id == parseInt(parentId)) ? item.deleteFromStorage(): updatedArray.push(item);
   })
-  updatePage(updatedArray)
+  taskHub.innerHTML = "";
+  reInstantiatingTasks(updatedArray)
 }
 
 var itemsCompleted = (parentId, childElementId) => {
