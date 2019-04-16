@@ -20,8 +20,8 @@
 
 #### Desktop layout:
 
-![Desktop layout]()
+![Desktop layout](https://github.com/hndfaw/Check-Yo-Self/blob/master/images/comp-layout.png)
 
 #### My layout:
 
-![Desktop layout]()
+![Desktop layout](https://github.com/hndfaw/Check-Yo-Self/blob/master/images/my-layout.png)
